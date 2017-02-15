@@ -1,12 +1,16 @@
-*.class
+/deployment
+/releases
+/.settings
+/*.launch
+/.classpath
+/.project
+/*.mpr.lock
+.mendix-cache
+proxies
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+/.svn
+/modeler-merge-marker
+/.mendix-cache
+/*.mpr.bak
+/*.mpr.left*
+/*.mpr.right*
