@@ -87,7 +87,7 @@ public class CheckMapDifference {
 			Map<String, Object> existsInExpected = mapDifference.entriesOnlyOnLeft();
 			for (Map.Entry<String, Object> entry : existsInExpected.entrySet()) {
 				logger.error(entry.getKey() + " => " + (entry.getValue() instanceof LinkedHashMap<?, ?> ? "association"
-						: "=> '" + entry.getValue() + "'") + " is not set in expected object.");
+						: "=> '" + entry.getValue() + "'") + " is not set in actual object.");
 			}
 		}
 		if (!mapDifference.entriesOnlyOnRight().isEmpty()) {
