@@ -1,0 +1,84 @@
+package deepobjectassert.helpers;
+
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+
+import com.mendix.core.objectmanagement.MendixObjectMember;
+import com.mendix.core.objectmanagement.member.MendixObjectReference;
+import com.mendix.core.objectmanagement.member.MendixObjectReferenceSet;
+import com.mendix.systemwideinterfaces.core.IMendixObject;
+
+import deepobjectassert.repositories.MendixObjectRepository;
+
+public class FlattenMendixObject {
+	private MendixObjectRepository mendixObjectRepository;
+	private IMendixObject rootObject;
+	private Set<String> uniqueReferenceSet = new HashSet<>();
+
+	public FlattenMendixObject(IMendixObject rootObject, MendixObjectRepository mendixObjectRepository) {
+		this.rootObject = rootObject;
+		this.mendixObjectRepository = mendixObjectRepository;
+	}
+
+	public Map<String, Object> getFlattenMendixObject() {
+		return (getFlattenMendixObject(rootObject));
+	}
+
+	public Map<String, Object> getFlattenMendixObject(IMendixObject iMendixObject) {
+		Map<String, Object> oneFlatMendixObject = new LinkedHashMap<>();
+		oneFlatMendixObject.putAll(mendixObjectRepository.getMembers(iMendixObject));
+
+		CleanObjectMap cleanObjectMap = new CleanObjectMap(mendixObjectRepository, oneFlatMendixObject);
+
+		oneFlatMendixObject = addObjectNameToMemberName(cleanObjectMap.cleanMap(), iMendixObject);
+
+		Iterator<Map.Entry<String, Object>> it = oneFlatMendixObject.entrySet().iterator();
+		while (it.hasNext()) {
+			Entry<String, Object> entry = it.next();
+			if ((entry.getValue() instanceof MendixObjectReference
+					|| entry.getValue() instanceof MendixObjectReferenceSet)
+					&& !uniqueReferenceSet.contains(((MendixObjectMember<?>) entry.getValue()).getName())) {
+				uniqueReferenceSet.add(((MendixObjectMember<?>) entry.getValue()).getName());
+				entry.setValue(getAssociatedObjectsAndMembers(iMendixObject, entry));
+				continue;
+			}
+
+			if ((entry.getValue() instanceof MendixObjectReference
+					|| entry.getValue() instanceof MendixObjectReferenceSet)
+					&& uniqueReferenceSet.contains(((MendixObjectMember<?>) entry.getValue()).getName())) {
+				it.remove();
+			}
+
+		}
+		return oneFlatMendixObject;
+	}
+
+	private Map<String, Map<?, ?>> getAssociatedObjectsAndMembers(IMendixObject iMendixObject,
+			Map.Entry<String, Object> entry) {
+		Map<String, Map<?, ?>> associatedObjectsAndMembers = new LinkedHashMap<>();
+		List<? extends IMendixObject> associatedObjects = mendixObjectRepository
+				.retrieveAssociatedObjects(iMendixObject, entry.getKey());
+		for (IMendixObject associatedObject : associatedObjects) {
+			associatedObjectsAndMembers.put(associatedObject.getType(), getFlattenMendixObject(associatedObject));
+		}
+		return associatedObjectsAndMembers;
+	}
+	
+	private Map<String, Object> addObjectNameToMemberName(Map<String, Object> mapWithoutObjectName, IMendixObject object) {
+		Map<String, Object> mapWithObjectName = new LinkedHashMap<>();
+		for (Map.Entry<String, Object> entry : mapWithoutObjectName.entrySet()) {
+			if(entry.getValue() instanceof MendixObjectReference || entry.getValue() instanceof MendixObjectReferenceSet) {
+				mapWithObjectName.put(entry.getKey(), entry.getValue());
+				continue;
+			}
+			mapWithObjectName.put(object.getType() + "." + entry.getKey(), entry.getValue());
+		}
+		
+		return mapWithObjectName;
+	}
+}
