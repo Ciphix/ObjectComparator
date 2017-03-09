@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import com.mendix.core.objectmanagement.MendixObjectMemberImpl;
 import com.mendix.core.objectmanagement.member.MendixAutoNumber;
 import com.mendix.core.objectmanagement.member.MendixHashString;
 import com.mendix.core.objectmanagement.member.MendixObjectReference;
@@ -59,7 +58,7 @@ public class CleanObjectMap {
 				it.remove();
 				continue;
 			}
-			if(entry.getValue() instanceof MendixObjectMemberImpl) {
+			if(entry.getValue() instanceof IMendixObjectMember) {
 				if (mendixObjectRepository.getValue((IMendixObjectMember<?>) entry.getValue()) == null) {
 					it.remove();
 					continue;

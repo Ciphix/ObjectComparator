@@ -8,10 +8,10 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
 
-import com.mendix.core.objectmanagement.MendixObjectMember;
 import com.mendix.core.objectmanagement.member.MendixObjectReference;
 import com.mendix.core.objectmanagement.member.MendixObjectReferenceSet;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
+import com.mendix.systemwideinterfaces.core.IMendixObjectMember;
 
 import deepobjectassert.repositories.MendixObjectRepository;
 
@@ -42,15 +42,15 @@ public class FlattenMendixObject {
 			Entry<String, Object> entry = it.next();
 			if ((entry.getValue() instanceof MendixObjectReference
 					|| entry.getValue() instanceof MendixObjectReferenceSet)
-					&& !uniqueReferenceSet.contains(((MendixObjectMember<?>) entry.getValue()).getName())) {
-				uniqueReferenceSet.add(((MendixObjectMember<?>) entry.getValue()).getName());
+					&& !uniqueReferenceSet.contains(((IMendixObjectMember<?>) entry.getValue()).getName())) {
+				uniqueReferenceSet.add(((IMendixObjectMember<?>) entry.getValue()).getName());
 				entry.setValue(getAssociatedObjectsAndMembers(iMendixObject, entry));
 				continue;
 			}
 
 			if ((entry.getValue() instanceof MendixObjectReference
 					|| entry.getValue() instanceof MendixObjectReferenceSet)
-					&& uniqueReferenceSet.contains(((MendixObjectMember<?>) entry.getValue()).getName())) {
+					&& uniqueReferenceSet.contains(((IMendixObjectMember<?>) entry.getValue()).getName())) {
 				it.remove();
 			}
 
