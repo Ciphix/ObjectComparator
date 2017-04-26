@@ -2,7 +2,7 @@
 
 Welcome to the Mendix Deep Object Assert module. This module can be used in [Mendix](http://www.mendix.com) apps to assert equality of two objects, especially for the purpose of unit testing.
 
-![DeepObjectAssert logo](https://appstore.home.mendix.com/logo/image?id=51546&changeddate=1489173645015)
+![DeepObjectAssert logo][1]
 
 ## Related resources
 * DeepObjectAssert on [GitHub](https://github.com/mennodehaas/deepobjectassert)
@@ -58,3 +58,5 @@ The following members are automatically excluded from the test:
 
 # Development notes
 * Functionality is tested using the JUnit 4 Java library with 100% code coverage. The tests are included in the javasource/deepobjectasssert/tests folder.
+
+ [1]: docs/logo.png
