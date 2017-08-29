@@ -60,7 +60,7 @@ public class ComparatorTest {
         actualMockMap.put("SomeKeyString", expectedString);
         when(mendixObjectRepository.getMembers(actualMock)).thenReturn(actualMockMap);
 
-        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository);
+        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository, true);
         assertTrue(comparator.CompareLists());
         verify(mendixObjectRepository, times(1)).getMembers(expectedMock);
         verify(mendixObjectRepository, times(1)).getMembers(actualMock);
@@ -81,7 +81,7 @@ public class ComparatorTest {
         actualMockMap.put("SomeKeyString", expectedString);
         when(mendixObjectRepository.getMembers(actualMock)).thenReturn(actualMockMap);
 
-        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository);
+        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository, true);
         assertTrue(comparator.CompareLists());
         verify(mendixObjectRepository, times(1)).getMembers(expectedMock);
         verify(mendixObjectRepository, times(1)).getMembers(actualMock);
@@ -124,7 +124,7 @@ public class ComparatorTest {
         when(mendixObjectRepository.getMembers(actualMock)).thenReturn(actualMockMap);
 
         // When the comparator is called
-        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository);
+        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository, true);
         
         // Then we expect False to be returned
         assertFalse(comparator.CompareLists());
@@ -132,7 +132,7 @@ public class ComparatorTest {
         // And that the mocks are called
         verify(mendixObjectRepository, times(1)).getMembers(expectedMock);
         verify(mendixObjectRepository, times(1)).getMembers(actualMock);
-        verify(loggerMock, times(3)).error(Mockito.anyString());
+        verify(loggerMock, times(3)).debug(Mockito.anyString());
     }
     
     @Test
@@ -162,7 +162,7 @@ public class ComparatorTest {
         when(mendixObjectRepository.getMembers(actualMock)).thenReturn(actualMockMap);
 
         // When the comparator is called
-        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository);
+        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository, true);
         
         // Then we expect True to be returned
         assertTrue(comparator.CompareLists());
@@ -176,15 +176,15 @@ public class ComparatorTest {
     @Test
     public void testIfFalseIsReturnedWhenIMendixObjectIsNull() {
       // When: Expected and Actual objects are null
-    	Comparator comparator = new Comparator(null, actualMock, loggerMock, mendixObjectRepository);
-    	Comparator anotherComparator = new Comparator(expectedMock, null, loggerMock, mendixObjectRepository);
+    	Comparator comparator = new Comparator(null, actualMock, loggerMock, mendixObjectRepository, true);
+    	Comparator anotherComparator = new Comparator(expectedMock, null, loggerMock, mendixObjectRepository, true);
       
       // Then: I expect false to be returned
       assertFalse(comparator.CompareLists());
       assertFalse(anotherComparator.CompareLists());
       
       // And: I expect a log message
-      verify(loggerMock, times(2)).error(Mockito.anyString());
+      verify(loggerMock, times(2)).debug(Mockito.anyString());
     }
     
     @Test
@@ -220,7 +220,7 @@ public class ComparatorTest {
         when(mendixObjectRepository.retrieveAssociatedObjects(actualMock, "SomeObject_OtherObject")).thenReturn(expectedAssociatedObjectList);
         
 
-        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository);
+        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository, true);
         assertTrue(comparator.CompareLists());
         verify(mendixObjectRepository, times(1)).getMembers(expectedMock);
         verify(mendixObjectRepository, times(1)).getMembers(actualMock);
@@ -258,7 +258,7 @@ public class ComparatorTest {
         when(mendixObjectRepository.retrieveAssociatedObjects(expectedAssociatedMock, "SomeObject_OtherObject")).thenReturn(expectedAssociatedObjectList);
         
 
-        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository);
+        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository, true);
         assertTrue(comparator.CompareLists());
         
         verify(mendixObjectRepository, times(0)).retrieveAssociatedObjects(expectedAssociatedMock, "SomeObject_OtherObject");
@@ -299,7 +299,7 @@ public class ComparatorTest {
         when(mendixObjectRepository.retrieveAssociatedObjects(actualMock, "SomeObject_OtherObject")).thenReturn(expectedAssociatedObjectList);
         
 
-        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository);
+        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository, true);
         assertTrue(comparator.CompareLists());
         verify(mendixObjectRepository, times(1)).getMembers(expectedMock);
         verify(mendixObjectRepository, times(1)).getMembers(actualMock);
@@ -339,7 +339,7 @@ public class ComparatorTest {
         when(mendixObjectRepository.retrieveAssociatedObjects(expectedAssociatedMock, "SomeObject_OtherObject")).thenReturn(expectedAssociatedObjectList);
         
 
-        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository);
+        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository, true);
         assertTrue(comparator.CompareLists());
         
         verify(mendixObjectRepository, times(0)).retrieveAssociatedObjects(expectedAssociatedMock, "SomeObject_OtherObject");
@@ -347,7 +347,7 @@ public class ComparatorTest {
         }
     
     @Test
-    public void testIfFaseIsReturnedWhenAssociatedOjectsAreUnequal() {
+    public void testIfFalseIsReturnedWhenAssociatedOjectsAreUnequal() {
     	when(expectedMock.getType()).thenReturn("Module.Entity");
         when(actualMock.getType()).thenReturn("Module.Entity");
         
@@ -396,13 +396,13 @@ public class ComparatorTest {
         when(mendixObjectRepository.retrieveAssociatedObjects(actualMock, "SomeObject_OtherObject")).thenReturn(actualAssociatedObjectList);
         
 
-        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository);
+        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository, true);
         assertFalse(comparator.CompareLists());
         verify(mendixObjectRepository, times(1)).getMembers(expectedMock);
         verify(mendixObjectRepository, times(1)).getMembers(actualMock);
         verify(mendixObjectRepository, times(1)).getMembers(expectedAssociatedMock);
         verify(mendixObjectRepository, times(1)).getMembers(actualAssociatedMock);
-        verify(loggerMock, times(1)).error(Mockito.anyString());
+        verify(loggerMock, times(1)).debug(Mockito.anyString());
     }
     
     @Test
@@ -410,14 +410,14 @@ public class ComparatorTest {
     	when(expectedMock.getType()).thenReturn("Module.Entity");
         when(actualMock.getType()).thenReturn("Module.AnotherEntity");
         
-    	Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository);
+    	Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository, true);
 
     	assertFalse(comparator.CompareLists());
-    	verify(loggerMock, times(1)).error(Mockito.anyString());
+    	verify(loggerMock, times(1)).debug(Mockito.anyString());
     }
     
     @Test
-    public void testIfFaseIsReturnedWhenAssociatedObjectsIsNotSet() {
+    public void testIfFalseIsReturnedWhenAssociatedObjectsIsNotSet() {
     	when(expectedMock.getType()).thenReturn("Module.Entity");
         when(actualMock.getType()).thenReturn("Module.Entity");
         
@@ -450,8 +450,8 @@ public class ComparatorTest {
         when(mendixObjectRepository.retrieveAssociatedObjects(expectedMock, "SomeObject_OtherObject")).thenReturn(expectedAssociatedObjectList);
         
 
-        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository);
-        Comparator anotherComparator = new Comparator(actualMock, expectedMock, loggerMock, mendixObjectRepository);
+        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository, true);
+        Comparator anotherComparator = new Comparator(actualMock, expectedMock, loggerMock, mendixObjectRepository, true);
         assertFalse(comparator.CompareLists());
         assertFalse(anotherComparator.CompareLists());
         
@@ -459,6 +459,64 @@ public class ComparatorTest {
         verify(mendixObjectRepository, times(2)).getMembers(actualMock);
         verify(mendixObjectRepository, times(2)).getMembers(expectedAssociatedMock);
  
-        verify(loggerMock, times(2)).error(Mockito.anyString());
+        verify(loggerMock, times(2)).debug(Mockito.anyString());
+    }
+    
+    @Test
+    public void testIfTrueIsReturnedWhenAssociatedOjectsAreUnequalAndAssociatedObjectsAreNotEvaluated() {
+    	when(expectedMock.getType()).thenReturn("Module.Entity");
+        when(actualMock.getType()).thenReturn("Module.Entity");
+        
+    	IMendixObjectMember<String> expectedString = mock(MendixString.class);
+        when(mendixObjectRepository.getValue(expectedString)).thenReturn("Some string");
+        
+        IMendixObjectMember<String> actualString = mock(MendixString.class);
+        when(mendixObjectRepository.getValue(actualString)).thenReturn("Some different string");
+        
+        IMendixObjectMember<?> expectedReference = mock(MendixObjectReference.class);
+        IMendixIdentifier expectedIdentifier = mock(IMendixIdentifier.class);
+        
+        IMendixObjectMember<?> actualReference = mock(MendixObjectReference.class);
+        IMendixIdentifier actualIdentifier = mock(IMendixIdentifier.class);
+
+        
+        expectedMockMap.put("SomeObject_OtherObject", expectedReference);
+        actualMockMap.put("SomeObject_OtherObject", actualReference);
+        
+        expectedMockMap.put("SomeKeyString", expectedString);
+        actualMockMap.put("SomeKeyString", expectedString);
+        
+        IMendixObject expectedAssociatedMock = mock(IMendixObject.class);
+        Map<String, IMendixObjectMember<?>> expectedAssociatedMockMap = new HashMap<String, IMendixObjectMember<?>>();
+        expectedAssociatedMockMap.put("SomeAssociatedString", expectedString);
+        List<IMendixObject> expectedAssociatedObjectList = new ArrayList<>();
+        expectedAssociatedObjectList.add(expectedAssociatedMock);
+        
+        IMendixObject actualAssociatedMock = mock(IMendixObject.class);
+        Map<String, IMendixObjectMember<?>> actualAssociatedMockMap = new HashMap<String, IMendixObjectMember<?>>();
+        actualAssociatedMockMap.put("SomeAssociatedString", actualString);
+        List<IMendixObject> actualAssociatedObjectList = new ArrayList<>();
+        actualAssociatedObjectList.add(actualAssociatedMock);
+        
+        when(mendixObjectRepository.getValue(expectedReference)).thenReturn(expectedIdentifier);
+        when(expectedReference.getName()).thenReturn("SomeObject_OtherObject");
+        when(mendixObjectRepository.getMembers(expectedAssociatedMock)).thenReturn(expectedAssociatedMockMap);
+        
+        when(mendixObjectRepository.getValue(actualReference)).thenReturn(actualIdentifier);
+        when(actualReference.getName()).thenReturn("SomeObject_OtherObject");
+        when(mendixObjectRepository.getMembers(actualAssociatedMock)).thenReturn(actualAssociatedMockMap);
+        
+        when(mendixObjectRepository.getMembers(expectedMock)).thenReturn(expectedMockMap);
+        when(mendixObjectRepository.getMembers(actualMock)).thenReturn(actualMockMap);
+        when(mendixObjectRepository.retrieveAssociatedObjects(expectedMock, "SomeObject_OtherObject")).thenReturn(expectedAssociatedObjectList);
+        when(mendixObjectRepository.retrieveAssociatedObjects(actualMock, "SomeObject_OtherObject")).thenReturn(actualAssociatedObjectList);
+        
+
+        Comparator comparator = new Comparator(expectedMock, actualMock, loggerMock, mendixObjectRepository, false);
+        assertTrue(comparator.CompareLists());
+        verify(mendixObjectRepository, times(1)).getMembers(expectedMock);
+        verify(mendixObjectRepository, times(1)).getMembers(actualMock);
+        verify(mendixObjectRepository, times(0)).getMembers(expectedAssociatedMock);
+        verify(mendixObjectRepository, times(0)).getMembers(actualAssociatedMock);
     }
 }

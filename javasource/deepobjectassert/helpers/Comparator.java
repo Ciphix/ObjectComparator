@@ -13,37 +13,51 @@ public class Comparator {
 	private IMendixObject actual;
 	private ILogNode logger;
 	private MendixObjectRepository mendixObjectRepository = null;
+	private boolean includeAssociatedObjects; 
 
 	public Comparator(IMendixObject expected, IMendixObject actual, ILogNode logger,
-			MendixObjectRepository mendixObjectRepository) {
+			MendixObjectRepository mendixObjectRepository, boolean includeAssociatedObjects) {
 		this.expected = expected;
 		this.actual = actual;
 		this.logger = logger;
 		this.mendixObjectRepository = mendixObjectRepository;
+		this.includeAssociatedObjects = includeAssociatedObjects;
 	}
 
 	public boolean CompareLists() {
 
 		if (expected == null) {
-			logger.error("Expected object is NULL.");
+			logger.debug("Expected object is NULL.");
 			return false;
 		}
 
 		if (actual == null) {
-			logger.error("Actual object is NULL.");
+			logger.debug("Actual object is NULL.");
 			return false;
 		}
 
 		if (objectsAreDifferentTypes()) {
-			logger.error("Objects are not of the same type. Actual object is of type " + actual.getType()
+			logger.debug("Objects are not of the same type. Actual object is of type " + actual.getType()
 					+ ". Expected object is of type " + expected.getType() + ".");
 			return false;
 		}
 
-		Map<String, Object> actualFlattenMendixObject = (new FlattenMendixObject(actual, mendixObjectRepository))
-				.getFlattenMendixObject();
-		Map<String, Object> expectedFlattenMendixObject = (new FlattenMendixObject(expected, mendixObjectRepository))
-				.getFlattenMendixObject();
+		Map<String, Object> actualFlattenMendixObject = null;
+		Map<String, Object> expectedFlattenMendixObject = null;
+		
+		if(includeAssociatedObjects == true) {
+			actualFlattenMendixObject = (new FlattenMendixObject(actual, mendixObjectRepository))
+					.getFlattenMendixObject();
+			expectedFlattenMendixObject = (new FlattenMendixObject(expected, mendixObjectRepository))
+					.getFlattenMendixObject();
+		}
+		
+		if(includeAssociatedObjects == false) {
+			actualFlattenMendixObject = (new FlattenMendixObject(actual, mendixObjectRepository))
+					.getFlattenMendixObjectWithoutAssociatedObjects();
+			expectedFlattenMendixObject = (new FlattenMendixObject(expected, mendixObjectRepository))
+					.getFlattenMendixObjectWithoutAssociatedObjects();
+		}
 
 		return (new CheckMapDifference(logger, expectedFlattenMendixObject, actualFlattenMendixObject))
 				.checkDifference();

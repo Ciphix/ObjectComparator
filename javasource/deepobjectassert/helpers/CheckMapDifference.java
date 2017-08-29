@@ -72,7 +72,7 @@ public class CheckMapDifference {
 			Map<String, ValueDifference<Object>> differences = getDifferencesNestedMap(
 					mapDifference.entriesDiffering());
 			for (Map.Entry<String, ? extends ValueDifference<Object>> entry : differences.entrySet()) {
-				logger.error(entry.getKey() + " expected value is '"
+				logger.debug(entry.getKey() + " expected value is '"
 						+ entry.getValue().leftValue().getClass().getSimpleName() + " => "
 						+ entry.getValue().leftValue() + "' where actual value is '"
 						+ entry.getValue().leftValue().getClass().getSimpleName() + " => "
@@ -86,7 +86,7 @@ public class CheckMapDifference {
 			this.assertStatus = false;
 			Map<String, Object> existsInExpected = mapDifference.entriesOnlyOnLeft();
 			for (Map.Entry<String, Object> entry : existsInExpected.entrySet()) {
-				logger.error(entry.getKey() + " => " + (entry.getValue() instanceof LinkedHashMap<?, ?> ? "association"
+				logger.debug(entry.getKey() + " => " + (entry.getValue() instanceof LinkedHashMap<?, ?> ? "association"
 						: "=> '" + entry.getValue() + "'") + " is not set in actual object.");
 			}
 		}
@@ -94,7 +94,7 @@ public class CheckMapDifference {
 			this.assertStatus = false;
 			Map<String, Object> existsInExpected = mapDifference.entriesOnlyOnRight();
 			for (Map.Entry<String, Object> entry : existsInExpected.entrySet()) {
-				logger.error(entry.getKey() + " " + (entry.getValue() instanceof LinkedHashMap<?, ?> ? "association"
+				logger.debug(entry.getKey() + " " + (entry.getValue() instanceof LinkedHashMap<?, ?> ? "association"
 						: "=> '" + entry.getValue() + "'") + " is not set in expected object.");
 			}
 		}

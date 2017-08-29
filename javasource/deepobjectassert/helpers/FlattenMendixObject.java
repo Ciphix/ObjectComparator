@@ -26,10 +26,14 @@ public class FlattenMendixObject {
 	}
 
 	public Map<String, Object> getFlattenMendixObject() {
-		return (getFlattenMendixObject(rootObject));
+		return (getFlattenMendixObject(rootObject, true));
+	}
+	
+	public Map<String, Object> getFlattenMendixObjectWithoutAssociatedObjects() {
+		return (getFlattenMendixObject(rootObject, false));
 	}
 
-	public Map<String, Object> getFlattenMendixObject(IMendixObject iMendixObject) {
+	private Map<String, Object> getFlattenMendixObject(IMendixObject iMendixObject, boolean includeAssociatedObjects) {
 		Map<String, Object> oneFlatMendixObject = new LinkedHashMap<>();
 		oneFlatMendixObject.putAll(mendixObjectRepository.getMembers(iMendixObject));
 
@@ -38,20 +42,31 @@ public class FlattenMendixObject {
 		oneFlatMendixObject = addObjectNameToMemberName(cleanObjectMap.cleanMap(), iMendixObject);
 
 		Iterator<Map.Entry<String, Object>> it = oneFlatMendixObject.entrySet().iterator();
+		
 		while (it.hasNext()) {
 			Entry<String, Object> entry = it.next();
-			if ((entry.getValue() instanceof MendixObjectReference
-					|| entry.getValue() instanceof MendixObjectReferenceSet)
-					&& !uniqueReferenceSet.contains(((IMendixObjectMember<?>) entry.getValue()).getName())) {
-				uniqueReferenceSet.add(((IMendixObjectMember<?>) entry.getValue()).getName());
-				entry.setValue(getAssociatedObjectsAndMembers(iMendixObject, entry));
-				continue;
-			}
+			
+			if(includeAssociatedObjects == true) {
+				if ((entry.getValue() instanceof MendixObjectReference
+						|| entry.getValue() instanceof MendixObjectReferenceSet)
+						&& !uniqueReferenceSet.contains(((IMendixObjectMember<?>) entry.getValue()).getName())) {
+					uniqueReferenceSet.add(((IMendixObjectMember<?>) entry.getValue()).getName());
+					entry.setValue(getAssociatedObjectsAndMembers(iMendixObject, entry));
+					continue;
+				}
 
-			if ((entry.getValue() instanceof MendixObjectReference
-					|| entry.getValue() instanceof MendixObjectReferenceSet)
-					&& uniqueReferenceSet.contains(((IMendixObjectMember<?>) entry.getValue()).getName())) {
-				it.remove();
+				if ((entry.getValue() instanceof MendixObjectReference
+						|| entry.getValue() instanceof MendixObjectReferenceSet)
+						&& uniqueReferenceSet.contains(((IMendixObjectMember<?>) entry.getValue()).getName())) {
+					it.remove();
+				}
+			}
+			
+			if(includeAssociatedObjects == false) {
+				if ((entry.getValue() instanceof MendixObjectReference
+						|| entry.getValue() instanceof MendixObjectReferenceSet)) {
+					it.remove();
+				}
 			}
 
 		}
@@ -64,7 +79,7 @@ public class FlattenMendixObject {
 		List<? extends IMendixObject> associatedObjects = mendixObjectRepository
 				.retrieveAssociatedObjects(iMendixObject, entry.getKey());
 		for (IMendixObject associatedObject : associatedObjects) {
-			associatedObjectsAndMembers.put(associatedObject.getType(), getFlattenMendixObject(associatedObject));
+			associatedObjectsAndMembers.put(associatedObject.getType(), getFlattenMendixObject(associatedObject, true));
 		}
 		return associatedObjectsAndMembers;
 	}

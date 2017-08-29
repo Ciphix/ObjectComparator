@@ -21,12 +21,14 @@ public class DeepObjectAssert extends CustomJavaAction<java.lang.Boolean>
 {
 	private IMendixObject ExpectedObject;
 	private IMendixObject ActualObject;
+	private java.lang.Boolean IncludeAssociatedObjects;
 
-	public DeepObjectAssert(IContext context, IMendixObject ExpectedObject, IMendixObject ActualObject)
+	public DeepObjectAssert(IContext context, IMendixObject ExpectedObject, IMendixObject ActualObject, java.lang.Boolean IncludeAssociatedObjects)
 	{
 		super(context);
 		this.ExpectedObject = ExpectedObject;
 		this.ActualObject = ActualObject;
+		this.IncludeAssociatedObjects = IncludeAssociatedObjects;
 	}
 
 	@Override
@@ -35,7 +37,7 @@ public class DeepObjectAssert extends CustomJavaAction<java.lang.Boolean>
 		// BEGIN USER CODE
 		ILogNode logger = Core.getLogger("DeepObjectAssert");
 		MendixObjectRepository mendixObjectRepository = new MendixObjectRepository(getContext());
-		Comparator comparator = new Comparator(ExpectedObject, ActualObject, logger, mendixObjectRepository);
+		Comparator comparator = new Comparator(ExpectedObject, ActualObject, logger, mendixObjectRepository, IncludeAssociatedObjects);
 		return comparator.CompareLists();
 		// END USER CODE
 	}
