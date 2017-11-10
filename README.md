@@ -29,11 +29,15 @@ Once the ObjectComparator module is imported in your Mendix model, the ObjectCom
 The input of the ObjectComparator Java action consists of two Mendix objects that are created or retrieved within a microflow:
 * The actual object: the Mendix object that is compared with the expected object. Within unit tests, this object is usually returned by another action or microflow.
 * The expected object: the object with the expected values. Within unit tests, this object is usually specified by the user. 
+* Boolean IncludeAssociatedObjects: if set to True, associated objected will also be evaluated for equality. If set to False, only the input object itself will be included in evaluation.
 
 ## Output
 A boolean is returned, which is the result of the assertion of equality.
 * True is returned if the actual object equals the expected object.
 * False is returned if the actual object differs from the actual object. If false is returned, the differences between the Mendix objects are listed in the Mendix Modeler console with lognode 'DeepObjectAssert'. 
+
+## Logging
+* The ObjectComparator Log node is available for more advanced logging. If set to Debug or Trace level, more information will be printed about the evaluation of objects.
 
 ## Scenarios
 The following sceanrios are tested to prove equality:

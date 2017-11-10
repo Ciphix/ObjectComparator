@@ -35,7 +35,7 @@ public class ObjectComparator extends CustomJavaAction<java.lang.Boolean>
 	public java.lang.Boolean executeAction() throws Exception
 	{
 		// BEGIN USER CODE
-		ILogNode logger = Core.getLogger("DeepObjectAssert");
+		ILogNode logger = Core.getLogger("ObjectComparator");
 		MendixObjectRepository mendixObjectRepository = new MendixObjectRepository(getContext());
 		Comparator comparator = new Comparator(ExpectedObject, ActualObject, logger, mendixObjectRepository, IncludeAssociatedObjects);
 		return comparator.CompareLists();
