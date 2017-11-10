@@ -1,4 +1,4 @@
-package deepobjectassert.repositories;
+package objectcomparator.repositories;
 
 import java.util.List;
 import java.util.Map;

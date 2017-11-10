@@ -1,4 +1,4 @@
-package deepobjectassert.helpers;
+package objectcomparator.helpers;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,7 +13,7 @@ import com.mendix.core.objectmanagement.member.MendixObjectReference;
 import com.mendix.core.objectmanagement.member.MendixObjectReferenceSet;
 import com.mendix.systemwideinterfaces.core.IMendixObjectMember;
 
-import deepobjectassert.repositories.MendixObjectRepository;
+import objectcomparator.repositories.MendixObjectRepository;
 
 public class CleanObjectMap {
 	

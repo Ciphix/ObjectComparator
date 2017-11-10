@@ -15,7 +15,7 @@ public class UserActionsRegistrar
     registrator.registerUserAction(appcloudservices.actions.GenerateRandomPassword.class);
     registrator.registerUserAction(appcloudservices.actions.LogOutUser.class);
     registrator.registerUserAction(appcloudservices.actions.StartSignOnServlet.class);
-    registrator.registerUserAction(deepobjectassert.actions.DeepObjectAssert.class);
+    registrator.registerUserAction(objectcomparator.actions.ObjectComparator.class);
     registrator.registerUserAction(system.actions.VerifyPassword.class);
   }
 }

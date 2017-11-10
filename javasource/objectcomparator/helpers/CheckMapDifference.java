@@ -1,4 +1,4 @@
-package deepobjectassert.helpers;
+package objectcomparator.helpers;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

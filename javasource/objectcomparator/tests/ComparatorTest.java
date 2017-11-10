@@ -1,4 +1,4 @@
-package deepobjectassert.tests;
+package objectcomparator.tests;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -26,8 +26,8 @@ import com.mendix.systemwideinterfaces.core.IMendixIdentifier;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import com.mendix.systemwideinterfaces.core.IMendixObjectMember;
 
-import deepobjectassert.helpers.Comparator;
-import deepobjectassert.repositories.MendixObjectRepository;
+import objectcomparator.helpers.Comparator;
+import objectcomparator.repositories.MendixObjectRepository;
 
 public class ComparatorTest {
 

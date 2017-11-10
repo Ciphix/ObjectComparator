@@ -7,23 +7,23 @@
 // Other code you write will be lost the next time you deploy the project.
 // Special characters, e.g., é, ö, à, etc. are supported in comments.
 
-package deepobjectassert.actions;
+package objectcomparator.actions;
 
 import com.mendix.core.Core;
 import com.mendix.logging.ILogNode;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
-import deepobjectassert.helpers.Comparator;
-import deepobjectassert.repositories.MendixObjectRepository;
+import objectcomparator.helpers.Comparator;
+import objectcomparator.repositories.MendixObjectRepository;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 
-public class DeepObjectAssert extends CustomJavaAction<java.lang.Boolean>
+public class ObjectComparator extends CustomJavaAction<java.lang.Boolean>
 {
 	private IMendixObject ExpectedObject;
 	private IMendixObject ActualObject;
 	private java.lang.Boolean IncludeAssociatedObjects;
 
-	public DeepObjectAssert(IContext context, IMendixObject ExpectedObject, IMendixObject ActualObject, java.lang.Boolean IncludeAssociatedObjects)
+	public ObjectComparator(IContext context, IMendixObject ExpectedObject, IMendixObject ActualObject, java.lang.Boolean IncludeAssociatedObjects)
 	{
 		super(context);
 		this.ExpectedObject = ExpectedObject;
@@ -48,7 +48,7 @@ public class DeepObjectAssert extends CustomJavaAction<java.lang.Boolean>
 	@Override
 	public java.lang.String toString()
 	{
-		return "DeepObjectAssert";
+		return "ObjectComparator";
 	}
 
 	// BEGIN EXTRA CODE

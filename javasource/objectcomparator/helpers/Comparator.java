@@ -1,11 +1,11 @@
-package deepobjectassert.helpers;
+package objectcomparator.helpers;
 
 import java.util.Map;
 
 import com.mendix.logging.ILogNode;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 
-import deepobjectassert.repositories.MendixObjectRepository;
+import objectcomparator.repositories.MendixObjectRepository;
 
 public class Comparator {
 
