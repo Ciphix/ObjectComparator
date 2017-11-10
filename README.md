@@ -1,11 +1,11 @@
-# Mendix Deep Object Assert module
+# Mendix Object Comparator module
 
 Welcome to the Mendix Deep Object Assert module. This module can be used in [Mendix](http://www.mendix.com) apps to assert equality of two objects, especially for the purpose of unit testing.
 
-![DeepObjectAssert logo][1]
+![Object Comparator logo][1]
 
 ## Related resources
-* DeepObjectAssert on [GitHub](https://github.com/mennodehaas/deepobjectassert)
+* Object Comparator on [GitHub](https://github.com/WebFlight/ObjectComparator)
 * UnitTesting on [Mendix App Store](https://appstore.home.mendix.com/link/app/390/Mendix/UnitTesting)
 * Community Commons Function Library on [Mendix App Store](https://appstore.home.mendix.com/link/app/170/Mendix/Community-Commons-Function-Library)
 
@@ -19,14 +19,14 @@ Welcome to the Mendix Deep Object Assert module. This module can be used in [Men
 * [Development Notes](#development-notes)
 
 # Getting started
-1. The *Deep Object Assert* module can be downloaded from within the Mendix Business Modeler in the Mendix Appstore into any model that is build with Mendix 6.10.3+.
-2. In order to apply the deep object assert in unit tests, be sure to download and configure the UnitTesting and Community Commons modules.
+1. The *Object Comparator* module can be downloaded from within the Mendix Business Modeler in the Mendix Appstore into any model that is build with Mendix 7.5.1+.
+2. In order to apply the Object Comparator in unit tests, be sure to download and configure the UnitTesting and Community Commons modules.
 
 # Application
-Once the DeepObjectAssert module is imported in your Mendix model, the DeepObjectAssert Java action can be used in microflows. 
+Once the ObjectComparator module is imported in your Mendix model, the ObjectComparator Java action can be used in microflows. 
 
 ## Input
-The input of the DeepObjectAssert Java action consists of two Mendix objects that are created or retrieved within a microflow:
+The input of the ObjectComparator Java action consists of two Mendix objects that are created or retrieved within a microflow:
 * The actual object: the Mendix object that is compared with the expected object. Within unit tests, this object is usually returned by another action or microflow.
 * The expected object: the object with the expected values. Within unit tests, this object is usually specified by the user. 
 
@@ -57,6 +57,6 @@ The following members are automatically excluded from the test:
 	- CreationDate
 
 # Development notes
-* Functionality is tested using the JUnit 4 Java library with 100% code coverage. The tests are included in the javasource/deepobjectasssert/tests folder.
+* Functionality is tested using the JUnit 4 Java library with 100% code coverage. The tests are included in the javasource/objectcomparator/tests folder.
 
  [1]: docs/logo.png
