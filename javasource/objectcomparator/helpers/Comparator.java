@@ -1,11 +1,11 @@
-package objectcomparator.helpers;
+package myfirstmodule.helpers;
 
 import java.util.Map;
 
 import com.mendix.logging.ILogNode;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 
-import objectcomparator.repositories.MendixObjectRepository;
+import myfirstmodule.repositories.MendixObjectRepository;
 
 public class Comparator {
 

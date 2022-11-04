@@ -1,4 +1,4 @@
-package objectcomparator.helpers;
+package myfirstmodule.helpers;
 
 import java.util.LinkedHashMap;
 import java.util.Map;

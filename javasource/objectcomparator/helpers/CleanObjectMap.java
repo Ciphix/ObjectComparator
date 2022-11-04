@@ -1,4 +1,4 @@
-package objectcomparator.helpers;
+package myfirstmodule.helpers;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -13,7 +13,7 @@ import com.mendix.core.objectmanagement.member.MendixObjectReference;
 import com.mendix.core.objectmanagement.member.MendixObjectReferenceSet;
 import com.mendix.systemwideinterfaces.core.IMendixObjectMember;
 
-import objectcomparator.repositories.MendixObjectRepository;
+import myfirstmodule.repositories.MendixObjectRepository;
 
 public class CleanObjectMap {
 	
