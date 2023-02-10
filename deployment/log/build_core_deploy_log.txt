@@ -1,0 +1,11 @@
+Buildfile: C:\Users\Jaap van Leeuwen\Documents\Mendix\ObjectComparator-main\deployment\build_core.xml
+
+deploy:
+     [copy] Copying 51 files to C:\Users\Jaap van Leeuwen\Documents\Mendix\ObjectComparator-main\deployment
+     [copy] Copying 42 files to C:\Users\Jaap van Leeuwen\Documents\Mendix\ObjectComparator-main\deployment\model\lib\userlib
+     [copy] Copying 8 files to C:\Users\Jaap van Leeuwen\Documents\Mendix\ObjectComparator-main\deployment\model\resources
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+
+

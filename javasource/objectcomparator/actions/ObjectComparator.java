@@ -13,8 +13,8 @@ import com.mendix.core.Core;
 import com.mendix.logging.ILogNode;
 import com.mendix.systemwideinterfaces.core.IContext;
 import com.mendix.webui.CustomJavaAction;
-import myfirstmodule.helpers.Comparator;
-import myfirstmodule.repositories.MendixObjectRepository;
+import objectcomparator.helpers.Comparator;
+import objectcomparator.repositories.MendixObjectRepository;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 
 public class ObjectComparator extends CustomJavaAction<java.lang.Boolean>
@@ -38,7 +38,7 @@ public class ObjectComparator extends CustomJavaAction<java.lang.Boolean>
 		ILogNode logger = Core.getLogger("ObjectComparator");
 		MendixObjectRepository mendixObjectRepository = new MendixObjectRepository(getContext());
 		Comparator comparator = new Comparator(ExpectedObject, ActualObject, logger, mendixObjectRepository, IncludeAssociatedObjects);
-		return comparator.CompareLists();		
+		return comparator.CompareLists();
 		// END USER CODE
 	}
 

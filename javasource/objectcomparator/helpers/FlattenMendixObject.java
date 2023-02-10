@@ -1,4 +1,4 @@
-package myfirstmodule.helpers;
+package objectcomparator.helpers;
 
 import java.util.HashSet;
 import java.util.Iterator;
@@ -13,7 +13,7 @@ import com.mendix.core.objectmanagement.member.MendixObjectReferenceSet;
 import com.mendix.systemwideinterfaces.core.IMendixObject;
 import com.mendix.systemwideinterfaces.core.IMendixObjectMember;
 
-import myfirstmodule.repositories.MendixObjectRepository;
+import objectcomparator.repositories.MendixObjectRepository;
 
 public class FlattenMendixObject {
 	private MendixObjectRepository mendixObjectRepository;
