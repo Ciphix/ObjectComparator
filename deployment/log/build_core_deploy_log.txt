@@ -1,0 +1,10 @@
+Buildfile: C:\Users\Jaap van Leeuwen\Documents\GitHub\ObjectComparator\deployment\build_core.xml
+
+deploy:
+     [copy] Copying 51 files to C:\Users\Jaap van Leeuwen\Documents\GitHub\ObjectComparator\deployment
+     [copy] Copying 43 files to C:\Users\Jaap van Leeuwen\Documents\GitHub\ObjectComparator\deployment\model\lib\userlib
+     [copy] Copying 8 files to C:\Users\Jaap van Leeuwen\Documents\GitHub\ObjectComparator\deployment\model\resources
+
+BUILD SUCCESSFUL
+Total time: 0 seconds
+

@@ -1,0 +1,9 @@
+Met dependencies in buildpath kan je de class (objectcomparator.tests) ComparatorTest gewoon als unittest runnen. De unittests slagen
+
+vervolgens probeer je mendix te runnen. Dit geeft build errors (van de ComparatorTest) die ik niet goed kan plaatsen. Volgens mij hoef je die ook helemaal niet te builden.
+
+Mendix overschrijft echter je buildpath. Daarom kan je in eclipse de test wel uit je buildpath halen, maar als je mendix dan runt gaat ie dat weer overschrijven en krijg je alsnog de build errors.
+
+Probeer je daarna ook de unittest weer te laten lopen in eclipse dan faalt dat. Hij zegt dan dat ie de class niet meer kan vinden. Dit komt ook doordat je buildpath overschreven is.
+
+Als je het hele project objectcomparator.tests uit je buildpath haalt en vervolgens weer include dan runnen de unittests weer goed, maar kan je nog steeds niet lokaal in mendix runnen.

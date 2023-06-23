@@ -19,7 +19,7 @@ Welcome to the Mendix Deep Object Assert module. This module can be used in [Men
 * [Development Notes](#development-notes)
 
 # Getting started
-1. The *Object Comparator* module can be downloaded from within the Mendix Business Modeler in the Mendix Appstore into any model that is build with Mendix 7.5.1+.
+1. The *Object Comparator* module can be downloaded from within the Mendix Business Modeler in the Mendix Appstore into any model that is build with Mendix 9.13.1+.
 2. In order to apply the Object Comparator in unit tests, be sure to download and configure the UnitTesting and Community Commons modules.
 
 # Application
@@ -60,7 +60,5 @@ The following members are automatically excluded from the test:
 	- System.owner
 	- CreationDate
 
-# Development notes
-* Functionality is tested using the JUnit 4 Java library with 100% code coverage. The tests are included in the javasource/objectcomparator/tests folder.
 
  [1]: docs/logo.png
