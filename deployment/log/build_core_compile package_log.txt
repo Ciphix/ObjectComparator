@@ -11,6 +11,6 @@ package:
       [jar] Building jar: C:\Users\Jaap van Leeuwen\Documents\GitHub\ObjectComparator\deployment\model\bundles\project.jar
 
 BUILD SUCCESSFUL
-Total time: 2 seconds
+Total time: 3 seconds
 
 
