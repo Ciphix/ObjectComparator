@@ -5,7 +5,7 @@ Welcome to the Mendix Deep Object Assert module. This module can be used in [Men
 ![Object Comparator logo][1]
 
 ## Related resources
-* Object Comparator on [GitHub](https://github.com/WebFlight/ObjectComparator)
+* Object Comparator on [GitHub](https://github.com/Ciphix/ObjectComparator)
 * UnitTesting on [Mendix App Store](https://appstore.home.mendix.com/link/app/390/Mendix/UnitTesting)
 * Community Commons Function Library on [Mendix App Store](https://appstore.home.mendix.com/link/app/170/Mendix/Community-Commons-Function-Library)
 
